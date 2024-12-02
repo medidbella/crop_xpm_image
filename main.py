@@ -24,7 +24,6 @@ def main():
 		exit(1)
 	FileData = open(FilePath, 'r')
 	offset = [0]
-	empty_columns = 0
 	lines_len = [0]
 	cropped_lines = 0
 	left_empty_rows = [0]
@@ -36,13 +35,13 @@ def main():
 	if not pars_file.skip_to_pixels(offset, FileData):
 		print("no pixels in file (invalid format)")
 		exit(1)
-	empty_columns = pars_file.get_top_empty_columns(FileData, transparent_pixel, offset)
+	utils.set_start_offset(FileData, transparent_pixel, offset)
 	utils.data_init(left_empty_rows, right_empty_rows, FileData, offset, lines_len)
 	cropped_lines = pars_file.get_cropping_data(FileData, transparent_pixel,
 		left_empty_rows, right_empty_rows)
 	crop_data = data(offset[0], lines_len[0], cropped_lines,
 		left_empty_rows[0], right_empty_rows[0], FileData)
-	file_cropping.create_new_file(crop_data, FilePath)
+	file_cropping.write_cropped_data(crop_data, FilePath)
 	# print("empty_columns = " + str(empty_columns))
 	# print("cropped_lines = " + str(cropped_lines))
 	# print("left_empty cols = " + str(left_empty_rows[0]))

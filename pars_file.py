@@ -17,17 +17,6 @@ def skip_to_pixels(offset, file):
 			return True
 	return False
 
-def get_top_empty_columns(file, transparent_pixel, offset):
-	empty_columns = 0
-	for line in file:
-		offset[0] += len(line)
-		if utils.is_empty_column(line, transparent_pixel):
-			empty_columns += 1
-		else:
-			offset[0] -= len(line)
-			break
-	return empty_columns
-
 def get_empty_rows(line, left_empty_rows, right_empty_rows, transparent_pixel):
 	iter = 1
 	count = 0

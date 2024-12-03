@@ -10,10 +10,12 @@ def set_xpm_rows_columns(line, data):
 	return line
 
 def crop_line(line, data):
+	if line == "};\n":
+		return line
 	res = "\""
-	iter = data.trim_right
-	limit = data.line_len - (data.trim_left - 1) - 2 - ("," in line)
-	while iter < limit:
+	iter = (data.trim_left * data.transparent_pixel_len) + 1
+	limit = data.line_len - 3 - ("," in line) - (data.trim_right * data.transparent_pixel_len)
+	while iter <= limit:
 		res += line[iter]
 		iter += 1
 	res += "\""
@@ -24,6 +26,7 @@ def crop_line(line, data):
 	return res
 
 def write_cropped_data(data, FilePath):
+	count = 0
 	prev_line = ""
 	result_file = utils.create_new_file(FilePath)
 	data.file.seek(0)
@@ -36,8 +39,10 @@ def write_cropped_data(data, FilePath):
 			break
 	data.file.seek(data.start_offset)
 	for line in data.file:
-		if line != "};\n":
-			line = crop_line(line, data)
-		else:
-			result_file.write("\n")
+		line = crop_line(line, data)
 		result_file.write(line)
+		count += 1
+		if count == data.lines_nb:
+			break
+	result_file.write("};\n")
+	return

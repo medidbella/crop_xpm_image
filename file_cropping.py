@@ -16,7 +16,7 @@ def crop_line(line, data):
 	res = "\""
 	iter = (data.trim_left * data.pixel_len) + 1
 	limit = data.line_len - 3 - ("," in line) - (data.trim_right * data.pixel_len)
-	while iter <= limit:
+	while iter <= limit and iter < len(line):
 		res += line[iter]
 		iter += 1
 	res += "\""

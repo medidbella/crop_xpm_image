@@ -9,6 +9,6 @@ AFTER :
 
 ![Screenshot from 2024-12-03 18-38-11](https://github.com/user-attachments/assets/67e51b68-b7c8-4528-ba3d-ebb533913f74)
 
-In our project, we use XPM images with the MiniLibX graphical library. Since MiniLibX doesn't handle invisible pixels,
+In our graphics project, we use XPM images with the MiniLibX graphical library. Since MiniLibX doesn't handle invisible pixels,
 every pixel must be checked before being drawn.
 By cropping the image, we can significantly reduce the time required for this process, making it more efficient.

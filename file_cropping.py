@@ -5,16 +5,17 @@ def set_xpm_rows_columns(line, data):
 	splitted = []
 	splitted = line.split(" ")
 	line = splitted[2] + " " + splitted[3]
-	line = str(data.line_len - data.trim_left - data.trim_right) + " " +  line
 	line = str(data.lines_nb) + " " +  line
+	line = "\"" + str((int)((data.line_len - 4) / data.pixel_len) - data.trim_left - data.trim_right) + " " +  line
+	line += " \",\n"
 	return line
 
 def crop_line(line, data):
 	if line == "};\n":
 		return line
 	res = "\""
-	iter = (data.trim_left * data.transparent_pixel_len) + 1
-	limit = data.line_len - 3 - ("," in line) - (data.trim_right * data.transparent_pixel_len)
+	iter = (data.trim_left * data.pixel_len) + 1
+	limit = data.line_len - 3 - ("," in line) - (data.trim_right * data.pixel_len)
 	while iter <= limit:
 		res += line[iter]
 		iter += 1

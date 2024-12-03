@@ -10,13 +10,13 @@ else :
 	FilePath = sys.argv[1]
 class data:
 	def __init__(self, start_offset, line_len, lines_nb, trim_left,
-			trim_right, file, transparent_pixel_len):
+			trim_right, file, pixel_len):
 		self.start_offset = start_offset
 		self.line_len = line_len
 		self.lines_nb = lines_nb
 		self.trim_left = trim_left
 		self.trim_right = trim_right
-		self.transparent_pixel_len = transparent_pixel_len
+		self.pixel_len = pixel_len
 		self.file = file
 
 def main():

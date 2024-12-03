@@ -12,3 +12,11 @@ AFTER :
 In our graphics project, we use XPM images with the MiniLibX graphical library. Since MiniLibX doesn't handle invisible pixels,
 every pixel must be checked before being drawn.
 By cropping the image, we can significantly reduce the time required for this process, making it more efficient.
+
+USAGE:
+
+after cloning use this command: 
+
+$=> python3 main.py <path_to_your_image> 
+
+then a new directory named results will have your cropped image with the same name as the original one
